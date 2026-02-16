@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Contact Us</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Segoe UI, Arial;
+    background:#f6f6f6;
+}
+
+/* NAVBAR */
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 50px;
+    background:linear-gradient(90deg,#ff6a00,#ff9500);
+}
+
+.logo{
+    color:white;
+    font-size:24px;
+    font-weight:bold;
+}
+
+.navbar a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    font-size:18px;
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar a:hover{
+    color:#750000;
+    transform: scaleX(1.1) translateX(5px);
+}
+
+.navbar a::after{
+    content:'';
+    height:2px;
+    width:0;
+    bottom:2px;
+    position:absolute;
+    left:0;
+    background-color:#750000;
+    transition:width 0.3s ease;
+}
+
+.navbar a:hover::after{
+    width:100%;
+}
+
+/* CONTACT SECTION */
+.contact{
+    text-align:center;
+    padding:8px 20px;
+    background:linear-gradient(#fff,#ffe6cc);
+    
+}
+
+.contact h1{
+    font-size:42px;
+    color:#ff6a00;
+}
+
+.contact p{
+    font-size:18px;
+    margin-bottom:30px;
+}
+
+/* FORM CARD */
+.form-box{
+    max-width:500px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:14px;
+    box-shadow:0px 4px 10px rgba(0,0,0,0.2);
+}
+
+input, textarea{
+    width:100%;
+    padding:14px;
+    margin-bottom:15px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    font-size:16px;
+}
+
+textarea{
+    resize:none;
+    height:120px;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    font-size:18px;
+    background:#ff6a00;
+    color:white;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#e65c00;
+}
+
+/* SUCCESS MESSAGE */
+.success{
+    color:green;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+/* FOOTER */
+.footer{
+    background:#ff6a00;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin:0; /* ensure no gap */
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">Food Order</div>
+    <div>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'services' %}">Services</a>
+        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'contact' %}">Contact Us</a>
+        <a href="{% url 'logout' %}">Log Out</a>
+    </div>
+</div>
+
+<!-- CONTACT CONTENT -->
+<div class="contact">
+    <h1>Contact Us</h1>
+    <p>We’d love to hear from you 🍽️</p>
+
+    <div class="form-box">
+
+        {% if user.is_authenticated %}
+            <p><b>Hello, {{ user.username }}</b></p>
+        {% endif %}
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="success">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+
+    </div>
+</div>
+
+<!-- FOOTER (NO GAP ABOVE OR BELOW) -->
+<div class="footer">
+    © 2026 Food Order Website
+</div>
+
+</body>
+</html>

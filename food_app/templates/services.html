@@ -5,16 +5,10 @@
 <title>Food Order | Services</title>
 
 <style>
-/* body{
-    margin:0;
-    font-family: Arial, Helvetica, sans-serif;
-    background:#f4f4f4;
-} */
-
 body{
     margin:0;
     font-family:Segoe UI, Arial;
-    background:#f6f6f6;
+    background:#ffe6cc;
 }
 
 /* NAVBAR */
@@ -32,50 +26,39 @@ body{
     font-weight:bold;
 }
 
-/* .navbar a{
-    color:white;
-    text-decoration:none;
-    margin-left:20px;
-    font-size:18px;
-} */
-
 .navbar a{
     color:white;
     text-decoration:none;
     margin-left:20px;
     font-size:18px;
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transition: color 0.3s ease;
-    position: relative;
+    position:relative;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
-
-/* .navbar a:hover{
-    text-decoration:underline;
-} */
 
 .navbar a:hover{
-    /* border-bottom:2px solid white; */
-    color: #750000;
-    transform: scaleX(1.1) translateX(5px);
-}
-.navbar a::after {
-    content: '';
-    height: 2px;
-    width: 0;
-    bottom: 2px;
-    position: absolute;
-    left: 0;
-    background-color: #750000;
-    transition: width 0.3s ease;
+    color:#750000;
+    transform:scale(1.1) translateX(5px);
 }
 
-.navbar a:hover::after {
-    width: 100%;
+.navbar a::after{
+    content:'';
+    height:2px;
+    width:0;
+    bottom:2px;
+    position:absolute;
+    left:0;
+    background-color:#750000;
+    transition:width 0.3s ease;
 }
+
+.navbar a:hover::after{
+    width:100%;
+}
+
 /* SERVICES SECTION */
 .services{
     background:linear-gradient(#fff,#ffe6cc);
-    padding:90px 20px;
+    padding:113.2px 20px;
     text-align:center;
 }
 
@@ -115,50 +98,50 @@ body{
 }
 
 .order-box button{
-    margin-top:10px;
-    padding:10px 20px;
+    margin-top:16px;
+    padding:14px 34px;
+    font-size:16px;
     border:none;
     background:#ff6a00;
     color:white;
-    border-radius:20px;
+    border-radius:30px;
     cursor:pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .order-box button:hover{
-    background:#e85c00;
+    background:#e65c00;
+    transform: translateY(-2px);
 }
 
-/* FOOTER */
+/* FOOTER — SMALL STRIP ONLY */
 .footer{
     background:#ff6a00;
     color:white;
     text-align:center;
     padding:15px;
-    margin-top:50px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
 <div class="navbar">
     <div class="logo">Food Order</div>
     <div>
         <a href="{% url 'home' %}">Home</a>
         <a href="{% url 'services' %}">Services</a>
         <a href="{% url 'about' %}">About</a>
-        <a href="{% url 'logout'%}">Log Out</a>
+        <a href="{% url 'contact' %}">Contact Us</a>
+        <a href="{% url 'logout' %}">Log Out</a>
     </div>
 </div>
 
-<!-- SERVICES CONTENT -->
 <div class="services">
     <h1>Our Services</h1>
     <p>Order your favorite meals quickly and easily 🍕🍔🍜</p>
 
     <div class="order-container">
-
         <div class="order-box">
             <h3>Online Ordering</h3>
             <p>Choose food from menu and order instantly.</p>
@@ -176,11 +159,9 @@ body{
             <p>Order online and pick up easily.</p>
             <button>Pick Up</button>
         </div>
-
     </div>
 </div>
 
-<!-- FOOTER -->
 <div class="footer">
     © 2026 Food Order Website
 </div>
